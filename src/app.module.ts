@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
+import { TransactionsController } from './transactions/transactions.controller';
+import { TransactionsModule } from './transactions/transactions.module';
 
 @Module({
   imports: [
@@ -14,8 +16,9 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.POSTGRES_DB,
       autoLoadModels: true,
     }),
+    TransactionsModule,
   ],
-  controllers: [],
+  controllers: [TransactionsController],
   providers: [],
 })
 export class AppModule {}
